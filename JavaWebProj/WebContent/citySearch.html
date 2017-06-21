@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>City Search</title>
+<style type="text/css">
+table
+{
+margin:auto;
+}
+</style>
+<script type="text/javascript">
+function selectFunction(ref){
+	ref.style.backgroundColor = 'red';
+	ref.style.cursor = 'pointer';
+}
+function leaveFunction(ref){
+	ref.style.backgroundColor = 'white';
+}
+function clickFunction(ref){
+	//alert(ref);
+	var element = document.getElementById("search"); 
+	element.value = ref;
+}
+
+var xmlhttpreq1;
+function showCities(city)
+{
+	var cchar = city;
+	xmlhttpreq1 = new XMLHttpRequest();
+	xmlhttpreq1.open("GET","CityServlet?firstChar="+cchar,true);
+	xmlhttpreq1.onreadystatechange=displayMessage;
+	xmlhttpreq1.send();
+	
+}
+function displayMessage()
+{
+	if(xmlhttpreq1.readyState == 4 && xmlhttpreq1.status == 200)
+	{
+		document.getElementById("cities").innerHTML = xmlhttpreq1.responseText;
+	}
+	
+	/*if(xmlhttpreq1.readyState==4&&xmlhttpreq1.status==200)
+	{
+		document.getElementById("message").innerHTML=xmlhttpreq1.responseText;
+	}*/
+}
+</script>
+</head>
+<body>
+<table>
+<tr>
+<td><input type="text" id="search" required onkeyup="showCities(this.value)"></td>
+<td><input type="button" value="SEARCH CITY"></td>
+</tr>
+<tr>
+<td><div id="cities" onclick></div></td>
+</tr>
+</table>
+</body>
+</html>

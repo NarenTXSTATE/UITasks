@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Search</title>
+<style type="text/css">
+table
+{
+margin:auto;
+}
+ref
+{
+color:red;
+}
+</style>
+<script type="text/javascript">
+function selectFunction(ref){
+	ref.style.backgroundColor = 'red';
+	ref.style.cursor = 'pointer';
+}
+function leaveFunction(ref){
+	ref.style.backgroundColor = 'white';
+}
+function clickFunction(ref){
+	//alert(ref);
+	var element = document.getElementById("search"); 
+	element.value = ref;
+}
+
+var xmlhttpreq2;
+function showSuggestions(sug)
+{
+	var s = sug;
+	xmlhttpreq2 = new XMLHttpRequest();
+	xmlhttpreq2.open("GET","searchServlet?suggest="+s,true);
+	xmlhttpreq2.onreadystatechange=displayMessage;
+	xmlhttpreq2.send();
+	
+}
+function displayMessage()
+{
+	if(xmlhttpreq2.readyState == 4 && xmlhttpreq2.status == 200)
+	{
+		document.getElementById("suggestions").innerHTML = xmlhttpreq2.responseText;
+	}
+	/*if(xmlhttpreq1.readyState==4&&xmlhttpreq1.status==200)
+	{
+		document.getElementById("message").innerHTML=xmlhttpreq1.responseText;
+	}*/
+}
+</script>
+</head>
+<body>
+<table>
+<tr>
+<td><input type="text" id="search" required onkeydown="showSuggestions(this.value)"></td>
+<td><input type="button" value="SEARCH"></td>
+</tr>
+<!--  <tr> <td> </td></tr>-->
+<tr><td><div id="suggestions"></div>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration Page</title>
+<style>
+table
+{
+margin:auto;
+}
+caption
+{
+font-size:200%;
+color:red;
+}
+</style>
+<script type="text/javascript">
+function onfocusColor(ref)
+{
+	ref.style.background="#ffff00";
+}
+function onblurCoor(ref)
+{
+	ref.style.background="ffffff";
+}
+var xmlhttpreq;
+function validateUsername(ref)
+{
+	var uname = ref.value;
+	xmlhttpreq = new XMLHttpRequest();
+	xmlhttpreq.open("GET","validateServ?username="+uname,true);
+	xmlhttpreq.onreadystatechange=displayMessage;
+	xmlhttpreq.send();
+	
+}
+function displayMessage()
+{
+	if(xmlhttpreq.readyState == 4 && xmlhttpreq.status == 200)
+	{
+		document.getElementById("username_message").innerHTML = xmlhttpreq.responseText;
+	}
+	/*if(xmlhttpreq1.readyState==4&&xmlhttpreq1.status==200)
+	{
+		document.getElementById("message").innerHTML=xmlhttpreq1.responseText;
+	}*/
+}
+/*function validateEmail(ref)
+{
+	var email = ref.value;
+	xmlhttpreq1 = new XMLHTTPRequest();
+	xmlhttpreq1.open("GET", "validateServ?email="+email,true);
+	xmlhttpreq1.onreadystatechange=displayMessage;
+	xmlhttpreq1.send();
+}*/
+</script>
+</head>
+<body>
+<form action="">
+<table>
+<caption><b>Registration</b></caption>
+<tr>
+<td><label>UserName :</label></td>
+<td><input type="text" id="username" name="username" size="20" required
+			placeholder="Enter a Username"
+			onblur="onblurColor(this)"
+			onfocus="onfocusColor(this)"
+			onchange=validateUsername(this)></td>
+<td><div id="username_message"></div></td>
+</tr>
+<tr>
+<td><label>Name :</label></td>
+<td><input type="text" id="name" name="name" size="20" required
+           placeholder="Enter your name"
+          onblur="onblurColor(this)"
+			onfocus="onfocusColor(this)"></td>
+</tr>
+<tr>
+<td><label>Password :</label></td>
+<td><input type="password" id="password" name="password" size="20" required
+			placeholder="Enter password"
+			onblur="onblurColor(this)"
+			onfocus="onfocusColor(this)"></td>
+</tr>
+<tr>
+<td><label>Phone :</label></td>
+<td><input type="text" id="phone" name="phone" size="20"
+			onblur="onblurColor(this)"
+			onfocus="onfocusColor(this)"></td>
+</tr>
+<tr>
+<td><label>Email :</label></td>
+<td><input type="text" id="email" name="email" size="20" required
+			onchange=validateEmail(this)
+			onblur="onblurColor(this)"
+			onfocus="onfocusColor(this)"></td>
+<td><div id="email_message"></div></td>
+</tr>
+<tr>
+<td><label>DOB :</label></td>
+<td><input type="date" id="dob"  name="dob"
+ 			onblur="onblurColor(this)"
+			onfocus="onfocusColor(this)"></td>
+</tr>
+<tr>
+<td><label>Gender :</label></td>
+<td><input type="radio" value="male">Male</td>
+<td><input type="radio" value="female">Female</td>
+</tr>
+<tr align="center">
+<td colspan="2"><input type="submit" value="REGISTER"
+    onfocus="onfocusColor(this)"></td>
+</tr>
+</table>
+</form>
+</body>
+</html>
