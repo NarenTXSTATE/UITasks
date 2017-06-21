@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Age</title>
+<script type="text/javascript">
+function calculateAge(dob)
+{
+	var dateAge=0,monthAge=0,yearAge=0;
+	var today=new Date();
+	var bdate=new Date(dob);
+	yearAge=today.getFullYear() - bdate.getFullYear();
+	
+	//alert((today.getMonth()+1) - (bdate.getMonth()+1));
+	if ((today.getMonth()+1) > (bdate.getMonth()+1))
+	    var monthAge = (today.getMonth()+1) - (bdate.getMonth()+1);
+	  else {
+	    yearAge--;
+	    monthAge = 12 + (today.getMonth()+1) - (bdate.getMonth()+1);
+	  }
+
+	  if (today.getDate() >= bdate.getDate()+1)
+	    dateAge = today.getDate() - (bdate.getDate()+1);
+	  else {
+	    monthAge--;
+	    dateAge = today.getDate() - (bdate.getDate()+1);
+
+	    if (monthAge < 0) {
+	      monthAge = 11;
+	      yearAge--;
+	    }
+	  }
+	  //alert(bdate.getDate()+"/"+bdate.getMonth()+"/"+bdate.getFullYear());
+	  //alert(today.getDate()+"/"+today.getMonth()+"/"+today.getFullYear());
+	  document.getElementById("message").innerHTML= yearAge+"years"+"  "+monthAge+"months"+"  "+dateAge+"days";
+	  
+}
+</script>
+</head>
+<body>
+<label>Enter your Date of Birth: </label>
+<input type="date" id="age" onblur=calculateAge(this.value) required>
+<div id="message"></div>
+</body>
+</html>
