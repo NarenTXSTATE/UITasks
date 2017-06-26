@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>jQueryEvents</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+/*$(document).ready(function(){
+	alert("Hello");
+	$("input").focus(function(){
+		
+		$(this).css("background-color","grey");
+	});
+	
+	$("input").blur(function(){
+		$(this).css("background-color","#ffddff");
+	});
+	$("input").change(function(){
+		$("#data").text($(this.val());
+	});
+});*/
+$(document).ready(function(){
+	alert("Hllo");
+	$("input").focus(function(){
+		
+		$(this).css("background-color","grey");
+	});
+	
+	$("input").blur(function(){
+		$(this).css("background-color","#ffddff");
+	});
+	$("input").change(function(){
+		$("#data").text($(this).val());
+	});
+	
+});
+
+</script>
+</head>
+<body>
+	<h2 align="center">LOGIN</h2>
+	<form action="sampleServ">
+		<table align="center" bgcolor="blue">
+			<tr>
+				<td><label>UserName : </label></td>
+				<td><input type="text" size="20" name="username" required /></td>
+			</tr>
+			<tr>
+				<td><label>Password : </label></td>
+				<td><input type="password" size="20" name="password" /></td>
+			</tr>
+			<tr align="center">
+				<td colspan="2"><input type="submit" value="LOGIN"></td>
+			</tr>
+		</table>
+	</form>
+	<div id="data" align="center"></div>
+</body>
+</html>
